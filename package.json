@@ -1,7 +1,7 @@
 {
   "name": "homebridge-xgen-alarm",
   "displayName": "XGen Alarm",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "description": "Connect and utilize any alarm system which exposes a xGen UI through the web.",
   "author": {
@@ -23,6 +23,10 @@
   "scripts": {
     "test": "node --test test/"
   },
+  "main": "index.js",
+  "keywords": [
+    "homebridge-plugin"
+  ],
   "pluginAlias": "XGenAlarm",
   "pluginType": "platform",
   "singular": true,
