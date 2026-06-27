@@ -1,0 +1,146 @@
+{
+  "name": "homebridge-xgen-alarm",
+  "displayName": "XGen Alarm",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Connect and utilize any alarm system which exposes a xGen UI through the web.",
+  "author": {
+    "name": "Peggun"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/Peggun/homebridge-xgen-alarm#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Peggun/homebridge-xgen-alarm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Peggun/homebridge-xgen-alarm/issues"
+  },
+  "engines": {
+    "node": "^22.10.0 || ^24.0.0",
+    "homebridge": "^1.8.0 || ^2.0.0"
+  },
+  "scripts": {
+    "test": "node --test test/"
+  },
+  "pluginAlias": "XGenAlarm",
+  "pluginType": "platform",
+  "singular": true,
+  "headerDisplay": "Connects to the panel's local web UI. Arm Away / Arm Stay / Disarm are wired up against the confirmed protocol from master.js/status.js.",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Accessory Name",
+        "type": "string",
+        "default": "Alarm Panel"
+      },
+      "host": {
+        "title": "Panel IP address / hostname",
+        "type": "string",
+        "required": true
+      },
+      "protocol": {
+        "title": "Protocol",
+        "type": "string",
+        "default": "http",
+        "oneOf": [
+          { "title": "HTTP", "enum": ["http"] },
+          { "title": "HTTPS", "enum": ["https"] }
+        ]
+      },
+      "port": {
+        "title": "Port (leave blank for 80/443 default)",
+        "type": "integer"
+      },
+      "rejectUnauthorized": {
+        "title": "Verify TLS certificate",
+        "type": "boolean",
+        "default": true,
+        "description": "Turn OFF if the panel uses a self-signed HTTPS certificate."
+      },
+      "username": {
+        "title": "Login name (lgname)",
+        "type": "string",
+        "required": true
+      },
+      "pin": {
+        "title": "PIN (lgpin)",
+        "type": "string",
+        "required": true
+      },
+      "areaIndex": {
+        "title": "Area number to expose (1-based, matches the panel's own numbering)",
+        "type": "integer",
+        "default": 1
+      },
+      "pollIntervalSeconds": {
+        "title": "Status poll interval (seconds)",
+        "type": "integer",
+        "default": 15
+      },
+      "fnumAway": {
+        "title": "Arm Away function number (advanced)",
+        "type": "integer",
+        "default": 15
+      },
+      "fnumStay": {
+        "title": "Arm Stay function number (advanced)",
+        "type": "integer",
+        "default": 1
+      },
+      "fnumDisarm": {
+        "title": "Disarm function number (advanced)",
+        "type": "integer",
+        "default": 0
+      },
+      "notifications": {
+        "title": "Push notifications when the alarm is triggered",
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "title": "Enable",
+            "type": "boolean",
+            "default": false
+          },
+          "service": {
+            "title": "Service",
+            "type": "string",
+            "oneOf": [
+              { "title": "ntfy", "enum": ["ntfy"] },
+              { "title": "Pushover", "enum": ["pushover"] },
+              { "title": "Generic webhook", "enum": ["webhook"] }
+            ]
+          },
+          "ntfy": {
+            "title": "ntfy settings",
+            "type": "object",
+            "properties": {
+              "server": { "title": "Server (default https://ntfy.sh)", "type": "string" },
+              "topic": { "title": "Topic", "type": "string" },
+              "priority": { "title": "Priority", "type": "string", "default": "high" }
+            }
+          },
+          "pushover": {
+            "title": "Pushover settings",
+            "type": "object",
+            "properties": {
+              "userKey": { "title": "User Key", "type": "string" },
+              "appToken": { "title": "App Token", "type": "string" },
+              "priority": { "title": "Priority (-2 to 2)", "type": "integer", "default": 1 }
+            }
+          },
+          "webhook": {
+            "title": "Generic webhook settings",
+            "type": "object",
+            "properties": {
+              "url": { "title": "URL (may include {{title}} / {{message}})", "type": "string" },
+              "method": { "title": "Method", "type": "string", "default": "POST" },
+              "body": { "title": "Body template (may include {{title}} / {{message}})", "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}
