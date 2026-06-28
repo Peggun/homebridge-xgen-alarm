@@ -45,6 +45,24 @@
         "type": "string",
         "required": true
       },
+      "availableModes": {
+        "title": "Available Alarm Modes",
+        "type": "array",
+        "uniqueItems": true,
+        "default": [
+          "away",
+          "stay",
+          "off"
+        ],
+        "items": {
+          "type": "string",
+          "enum": [
+            "away",
+            "stay",
+            "off"
+          ]
+        }
+      },
       "areaIndex": {
         "title": "Area number to expose (1-based, matches the panel's own numbering)",
         "type": "integer",
