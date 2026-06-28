@@ -59,6 +59,7 @@
           "enum": [
             "away",
             "stay",
+            "night",
             "off"
           ]
         }
