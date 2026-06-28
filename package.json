@@ -1,7 +1,7 @@
 {
   "name": "homebridge-xgen-alarm",
   "displayName": "XGen Alarm",
-  "version": "0.1.3",
+  "version": "0.2.0-beta.1",
   "private": false,
   "description": "Connect and utilize any alarm system which exposes a xGen UI through the web.",
   "author": {
