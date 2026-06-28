@@ -1,7 +1,7 @@
 {
   "name": "homebridge-xgen-alarm",
   "displayName": "XGen Alarm",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "description": "Connect and utilize any alarm system which exposes a xGen UI through the web.",
   "author": {
@@ -49,8 +49,18 @@
         "type": "string",
         "default": "http",
         "oneOf": [
-          { "title": "HTTP", "enum": ["http"] },
-          { "title": "HTTPS", "enum": ["https"] }
+          {
+            "title": "HTTP",
+            "enum": [
+              "http"
+            ]
+          },
+          {
+            "title": "HTTPS",
+            "enum": [
+              "https"
+            ]
+          }
         ]
       },
       "port": {
@@ -111,36 +121,81 @@
             "title": "Service",
             "type": "string",
             "oneOf": [
-              { "title": "ntfy", "enum": ["ntfy"] },
-              { "title": "Pushover", "enum": ["pushover"] },
-              { "title": "Generic webhook", "enum": ["webhook"] }
+              {
+                "title": "ntfy",
+                "enum": [
+                  "ntfy"
+                ]
+              },
+              {
+                "title": "Pushover",
+                "enum": [
+                  "pushover"
+                ]
+              },
+              {
+                "title": "Generic webhook",
+                "enum": [
+                  "webhook"
+                ]
+              }
             ]
           },
           "ntfy": {
             "title": "ntfy settings",
             "type": "object",
             "properties": {
-              "server": { "title": "Server (default https://ntfy.sh)", "type": "string" },
-              "topic": { "title": "Topic", "type": "string" },
-              "priority": { "title": "Priority", "type": "string", "default": "high" }
+              "server": {
+                "title": "Server (default https://ntfy.sh)",
+                "type": "string"
+              },
+              "topic": {
+                "title": "Topic",
+                "type": "string"
+              },
+              "priority": {
+                "title": "Priority",
+                "type": "string",
+                "default": "high"
+              }
             }
           },
           "pushover": {
             "title": "Pushover settings",
             "type": "object",
             "properties": {
-              "userKey": { "title": "User Key", "type": "string" },
-              "appToken": { "title": "App Token", "type": "string" },
-              "priority": { "title": "Priority (-2 to 2)", "type": "integer", "default": 1 }
+              "userKey": {
+                "title": "User Key",
+                "type": "string"
+              },
+              "appToken": {
+                "title": "App Token",
+                "type": "string"
+              },
+              "priority": {
+                "title": "Priority (-2 to 2)",
+                "type": "integer",
+                "default": 1
+              }
             }
           },
           "webhook": {
             "title": "Generic webhook settings",
             "type": "object",
             "properties": {
-              "url": { "title": "URL (may include {{title}} / {{message}})", "type": "string" },
-              "method": { "title": "Method", "type": "string", "default": "POST" },
-              "body": { "title": "Body template (may include {{title}} / {{message}})", "type": "string" }
+              "url": {
+                "title": "URL (may include {{title}} / {{message}})",
+                "type": "string"
+              },
+              "method": {
+                "title": "Method",
+                "type": "string",
+                "default": "POST"
+              },
+              "body": {
+                "title": "Body template (may include {{title}} / {{message}})",
+                "type": "string"
+              }
             }
           }
         }
