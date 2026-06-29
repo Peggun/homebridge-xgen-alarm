@@ -89,6 +89,16 @@
         "type": "integer",
         "default": 0
       },
+      "fnumChimeOn": {
+        "title": "Chime On function number (advanced)",
+        "type": "integer",
+        "default": 10
+      },
+      "fnumChimeOff": {
+        "title": "Chime Off function number (advanced)",
+        "type": "integer",
+        "default": 11
+      },
       "notifications": {
         "title": "Push notifications when the alarm is triggered",
         "type": "object",
