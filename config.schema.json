@@ -45,25 +45,6 @@
         "type": "string",
         "required": true
       },
-      "availableModes": {
-        "title": "Available Alarm Modes",
-        "type": "array",
-        "uniqueItems": true,
-        "default": [
-          "away",
-          "stay",
-          "off"
-        ],
-        "items": {
-          "type": "string",
-          "enum": [
-            "away",
-            "stay",
-            "night",
-            "off"
-          ]
-        }
-      },
       "areaIndex": {
         "title": "Area number to expose (1-based, matches the panel's own numbering)",
         "type": "integer",
@@ -124,24 +105,6 @@
               "server": { "title": "Server (default https://ntfy.sh)", "type": "string" },
               "topic": { "title": "Topic", "type": "string" },
               "priority": { "title": "Priority", "type": "string", "default": "high" }
-            }
-          },
-          "pushover": {
-            "title": "Pushover settings",
-            "type": "object",
-            "properties": {
-              "userKey": { "title": "User Key", "type": "string" },
-              "appToken": { "title": "App Token", "type": "string" },
-              "priority": { "title": "Priority (-2 to 2)", "type": "integer", "default": 1 }
-            }
-          },
-          "webhook": {
-            "title": "Generic webhook settings",
-            "type": "object",
-            "properties": {
-              "url": { "title": "URL (may include {{title}} / {{message}})", "type": "string" },
-              "method": { "title": "Method", "type": "string", "default": "POST" },
-              "body": { "title": "Body template (may include {{title}} / {{message}})", "type": "string" }
             }
           }
         }

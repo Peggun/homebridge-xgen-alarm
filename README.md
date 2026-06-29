@@ -230,35 +230,6 @@ website. Topic names are unauthenticated by default, so pick something
 non-guessable, or run `ntfy.server` pointed at your own self-hosted
 instance.
 
-**Pushover** (most popular for home automation, ~$5 one-time per platform):
-```json
-"notifications": {
-  "enabled": true, "service": "pushover",
-  "pushover": { "userKey": "...", "appToken": "..." }
-}
-```
-Get both from https://pushover.net after creating a free account + an
-"Application".
-
-**Generic webhook** (Discord, Slack, Home Assistant, IFTTT Maker webhook,
-self-hosted ntfy with auth headers, anything else):
-```json
-"notifications": {
-  "enabled": true, "service": "webhook",
-  "webhook": {
-    "url": "https://your-endpoint/...",
-    "method": "POST",
-    "body": "{\"text\":\"{{title}}: {{message}}\"}"
-  }
-}
-```
-`{{title}}`/`{{message}}` get substituted into both `url` and `body`.
-
-Notifications only fire on the **rising edge** into Alarm Triggered — not
-once for the initial trigger and then again every poll while it stays
-triggered, and a fresh re-trigger after it's cleared fires again. See the
-`lib/notifier.js` doc comment for exactly how each service is called.
-
 ## Config reference
 
 | Key | Required | Default | Notes |
@@ -274,7 +245,7 @@ triggered, and a fresh re-trigger after it's cleared fires again. See the
 | `fnumAway` / `fnumStay` / `fnumDisarm` | no | `15` / `1` / `0` | Override only if your firmware variant differs |
 | `notifications.enabled` | no | `false` | |
 | `notifications.service` | no | — | `ntfy` \| `pushover` \| `webhook` |
-| `notifications.ntfy` / `.pushover` / `.webhook` | no | — | See "Notifications setup" above |
+| `notifications.ntfy` | no | — | See "Notifications setup" above |
 
 ## Security notes
 
